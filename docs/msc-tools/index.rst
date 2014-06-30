@@ -19,10 +19,3 @@ Contents:
    pages/troubleshooting
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-

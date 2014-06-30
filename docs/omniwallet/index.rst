@@ -12,13 +12,3 @@ Contents:
    :maxdepth: 2
 
    pages/intro
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
