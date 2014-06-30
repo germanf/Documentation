@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# MSC-Tools documentation build configuration file, created by
+# Mastercoin documentation build configuration file, created by
 # sphinx-quickstart on Mon Mar 17 10:49:11 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'MSC-Tools'
+project = u'Mastercoin'
 copyright = u'2014, Adam Chamely'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -181,7 +181,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MSC-Toolsdoc'
+htmlhelp_basename = 'Mastercoindoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -201,7 +201,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'MSC-Tools.tex', u'MSC-Tools Documentation',
+  ('index', 'Mastercoin.tex', u'Mastercoin Documentation',
    u'Adam Chamely', 'manual'),
 ]
 
@@ -231,7 +231,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'msc-tools', u'MSC-Tools Documentation',
+    ('index', 'Mastercoin', u'Mastercoin Documentation',
      [u'Adam Chamely'], 1)
 ]
 
@@ -245,8 +245,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'MSC-Tools', u'MSC-Tools Documentation',
-   u'Adam Chamely', 'MSC-Tools', 'One line description of project.',
+  ('index', 'Mastercoin', u'Mastercoin Documentation',
+   u'Adam Chamely', 'Mastercoin', 'One line description of project.',
    'Miscellaneous'),
 ]
 
