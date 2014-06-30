@@ -3,15 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to MSC-Tools's documentation!
-=====================================
+Welcome to the Mastercoin documentation!
+========================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
+   mastercore/index
    msc-tools/index
+   omniwallet/index
+
 
 
 Indices and tables

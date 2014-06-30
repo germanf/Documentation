@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Mastercoin-Tools
+Omniwallet
 =====================================
 
 Contents:
@@ -12,11 +12,7 @@ Contents:
    :maxdepth: 2
 
    pages/intro
-   pages/installation
-   pages/running
-   pages/tools
-   pages/obelisk
-   pages/troubleshooting
+
 
 
 Indices and tables
