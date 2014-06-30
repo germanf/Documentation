@@ -11,7 +11,12 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   msc-tools/index
+   pages/intro
+   pages/installation
+   pages/running
+   pages/tools
+   pages/obelisk
+   pages/troubleshooting
 
 
 Indices and tables
