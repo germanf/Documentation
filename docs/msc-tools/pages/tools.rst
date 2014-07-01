@@ -4,10 +4,10 @@ Tools
 
 List of tools included with the installation and how to use them
 
-:ref:`generateTX50_SP.py <msc_tx50>`
-:ref:`generateTX51_SP.py <msc_tx51>`
-:ref:`generateTX53_SP.py <msc_tx53>`
-:ref:`msc_createtx.py <msc_createtx>`
+:ref:`Create Asset Issuance (generateTX50_SP.py) <msc_tx50>`
+:ref:`Create Crowdsale (generateTX51_SP.py) <msc_tx51>`
+:ref:`Close Crowdsale early (generateTX53_SP.py) <msc_tx53>`
+:ref:`Create/Send Tx (msc_createtx.py) <msc_createtx>`
 
 
 
