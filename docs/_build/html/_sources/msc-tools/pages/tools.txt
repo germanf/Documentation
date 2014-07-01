@@ -2,19 +2,23 @@
 Tools
 =====
 
+.. _tools:
+
 List of tools included with the installation and how to use them
 
-:ref:`Create Asset Issuance (generateTX50_SP.py) <msc_tx50>`
-:ref:`Create Crowdsale (generateTX51_SP.py) <msc_tx51>`
-:ref:`Close Crowdsale early (generateTX53_SP.py) <msc_tx53>`
-:ref:`Create/Send Tx (msc_createtx.py) <msc_createtx>`
+* :ref:`Create Asset Issuance (generateTX50_SP.py) <msc_tx50>`
+* :ref:`Create Crowdsale (generateTX51_SP.py) <msc_tx51>`
+* :ref:`Close Crowdsale early (generateTX53_SP.py) <msc_tx53>`
+* :ref:`Create/Send Tx (msc_createtx.py) <msc_createtx>`
 
 
 
 .. _msc_tx50:
 
-generateTX50_SP.py
+generateTX50_SP.py 
 ------------------
+:ref:`Back to Top <tools>`
+
 
 Purpose:
 ^^^^^^^^
@@ -130,6 +134,7 @@ The output will be the transaction hash ID. Check http://blockchain.info to see 
 
 generateTX51_SP.py
 ------------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^
@@ -256,6 +261,7 @@ The output will be the transaction hash ID. Check http://blockchain.info to see 
 
 generateTX53_SP.py
 ------------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^
@@ -347,6 +353,7 @@ The output will be the transaction hash ID. Check http://blockchain.info to see 
 
 msc_createtx.py
 ---------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^
@@ -459,6 +466,7 @@ You can execute/run the program with::
 
 msc-sxsend.py
 -------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^
@@ -560,6 +568,7 @@ You can execute/run the program with::
 
 msc-txcreate.py
 ---------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^
@@ -639,6 +648,7 @@ You can execute/run the program with::
 
 msc-balance.py
 --------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^
@@ -711,6 +721,7 @@ You can execute/run the program with::
 
 getConsensusMSC.py
 ------------------
+:ref:`Back to Top <tools>`
 
 Purpose:
 ^^^^^^^^

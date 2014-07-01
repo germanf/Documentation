@@ -53,13 +53,16 @@
             
   <div class="section" id="tools">
 <h1>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h1>
-<p>List of tools included with the installation and how to use them</p>
-<p><a class="reference internal" href="#msc-tx50"><em>Create Asset Issuance (generateTX50_SP.py)</em></a>
-<a class="reference internal" href="#msc-tx51"><em>Create Crowdsale (generateTX51_SP.py)</em></a>
-<a class="reference internal" href="#msc-tx53"><em>Close Crowdsale early (generateTX53_SP.py)</em></a>
-<a class="reference internal" href="#msc-createtx"><em>Create/Send Tx (msc_createtx.py)</em></a></p>
+<p id="id1">List of tools included with the installation and how to use them</p>
+<ul class="simple">
+<li><a class="reference internal" href="#msc-tx50"><em>Create Asset Issuance (generateTX50_SP.py)</em></a></li>
+<li><a class="reference internal" href="#msc-tx51"><em>Create Crowdsale (generateTX51_SP.py)</em></a></li>
+<li><a class="reference internal" href="#msc-tx53"><em>Close Crowdsale early (generateTX53_SP.py)</em></a></li>
+<li><a class="reference internal" href="#msc-createtx"><em>Create/Send Tx (msc_createtx.py)</em></a></li>
+</ul>
 <div class="section" id="generatetx50-sp-py">
 <span id="msc-tx50"></span><h2>generateTX50_SP.py<a class="headerlink" href="#generatetx50-sp-py" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
 <div class="section" id="purpose">
 <h3>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/mastercoin-MSC/spec#new-property-creation-with-fixed-number-of-tokens">Create a New Smart Property</a></p>
@@ -168,22 +171,23 @@ Errors will be returned with json that contains</p>
 </div>
 <div class="section" id="generatetx51-sp-py">
 <span id="msc-tx51"></span><h2>generateTX51_SP.py<a class="headerlink" href="#generatetx51-sp-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>Purpose:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id2">
+<h3>Purpose:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/mastercoin-MSC/spec#new-property-creation-via-crowdsale-with-variable-number-of-tokens">Create a New Crowdsale</a></p>
 <p>Creates the raw transacation that when broadcasts will create a <a class="reference external" href="https://github.com/mastercoin-MSC/spec#new-property-creation-via-crowdsale-with-variable-number-of-tokens">New Crowdsale</a>.
 Located in mastercoin-tools/scripts</p>
 </div>
-<div class="section" id="id2">
-<h3>Requirements:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Requirements:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Python 2.7.6</li>
 <li>Fully synced Bitcoind node (can be local or remote)</li>
 <li>Private key of the issuing address in bitcoind</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h3>Inputs:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Inputs:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/mastercoin-MSC/spec#field-transaction-type">transacation_type</a>: type int - representing the tx type (51)</li>
@@ -253,8 +257,8 @@ Located in mastercoin-tools/scripts</p>
 Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
 <img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
 </div>
-<div class="section" id="id14">
-<h3>Output and Running:<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Output and Running:<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python generateTX50_SP.py
 </pre></div>
@@ -288,22 +292,23 @@ Errors will be returned with json that contains</p>
 </div>
 <div class="section" id="generatetx53-sp-py">
 <span id="msc-tx53"></span><h2>generateTX53_SP.py<a class="headerlink" href="#generatetx53-sp-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id15">
-<h3>Purpose:<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id16">
+<h3>Purpose:<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/mastercoin-MSC/spec#close-a-crowdsale-manually">Close an existing Crowdsale early</a>.</p>
 <p>Creates the raw transacation that when broadcasts will close the current crowdsale Crowdsale immediately.
 Located in mastercoin-tools/scripts</p>
 </div>
-<div class="section" id="id16">
-<h3>Requirements:<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Requirements:<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Python 2.7.6</li>
 <li>Fully synced Bitcoind node (can be local or remote)</li>
 <li>Private key of the issuing address in bitcoind</li>
 </ul>
 </div>
-<div class="section" id="id17">
-<h3>Inputs:<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Inputs:<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li><a class="reference external" href="https://github.com/mastercoin-MSC/spec#field-transaction-type">transacation_type</a>: type int - representing the tx type (53)</li>
@@ -337,8 +342,8 @@ Located in mastercoin-tools/scripts</p>
 Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
 <img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
 </div>
-<div class="section" id="id20">
-<h3>Output and Running:<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Output and Running:<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python generateTX53_SP.py
 </pre></div>
@@ -372,8 +377,9 @@ Errors will be returned with json that contains</p>
 </div>
 <div class="section" id="msc-createtx-py">
 <span id="msc-createtx"></span><h2>msc_createtx.py<a class="headerlink" href="#msc-createtx-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id21">
-<h3>Purpose:<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id22">
+<h3>Purpose:<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>Used to create, sign and/or send a Masterprotocol currency transaction.
 Located in mastercoin-tools/scripts</p>
 </div>
@@ -391,8 +397,8 @@ Located in mastercoin-tools/scripts</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id22">
-<h3>Inputs:<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Inputs:<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>transaction_from: The Public Address of the Sender</li>
@@ -482,13 +488,14 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="msc-sxsend-py">
 <h2>msc-sxsend.py<a class="headerlink" href="#msc-sxsend-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id23">
-<h3>Purpose:<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id24">
+<h3>Purpose:<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <p>DEPRECIATED, Please see <a class="reference internal" href="#msc-createtx"><em>msc_createtx.py</em></a></p>
 <p>Used to create (and/or send) a Mastercoin transaction</p>
 </div>
-<div class="section" id="id24">
-<h3>Checks:<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id25">
+<h3>Checks:<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
 <p>Checks from address to make sure it has:</p>
 <ul class="simple">
 <li>Enough BTC to create/send the transaction</li>
@@ -498,8 +505,8 @@ You can execute/run the program with:</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id25">
-<h3>Inputs:<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h3>Inputs:<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>transaction_from: The Public Address of the Sender</li>
@@ -548,8 +555,8 @@ You can execute/run the program with:</p>
 Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
 <img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
 </div>
-<div class="section" id="id26">
-<h3>Output:<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h3>Output:<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output.
 Errors will be returned with json that contains</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -569,8 +576,8 @@ Errors will be returned with json that contains</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id27">
-<h3>Running:<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3>Running:<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <p>Standalone running/testing can be done by creating a json file (see input details or example_send.json for structure)
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python msc_sxsend.py
@@ -580,13 +587,14 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="msc-txcreate-py">
 <h2>msc-txcreate.py<a class="headerlink" href="#msc-txcreate-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id28">
-<h3>Purpose:<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id29">
+<h3>Purpose:<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
 <p>DEPRECIATED, Please see <a class="reference internal" href="#msc-createtx"><em>msc_createtx.py</em></a></p>
 <p>Used to create an unsigned Mastercoin transaction</p>
 </div>
-<div class="section" id="id29">
-<h3>Checks:<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id30">
+<h3>Checks:<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
 <p>Checks from address to make sure it has:</p>
 <ul class="simple">
 <li>Enough BTC to create/send the transaction</li>
@@ -596,8 +604,8 @@ You can execute/run the program with:</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id30">
-<h3>Inputs:<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id31">
+<h3>Inputs:<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>transaction_from: The Public Address of the Sender</li>
@@ -627,8 +635,8 @@ You can execute/run the program with:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id31">
-<h3>Output:<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id32">
+<h3>Output:<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output.
 Errors will be returned with json that contains</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -646,8 +654,8 @@ Errors will be returned with json that contains</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id32">
-<h3>Running:<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id33">
+<h3>Running:<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
 <p>Standalone running/testing can be done by creating a json file (see input details or example_send.json for structure)
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python msc-txcreate.py
@@ -657,27 +665,28 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="msc-balance-py">
 <span id="msc-balance"></span><h2>msc-balance.py<a class="headerlink" href="#msc-balance-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id33">
-<h3>Purpose:<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id34">
+<h3>Purpose:<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
 <p>Used to get the Mastercoin balance of an address</p>
 </div>
-<div class="section" id="id34">
-<h3>Requirements:<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id35">
+<h3>Requirements:<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
 <p>This script leverages the existing mastercoin tools parsed/validated output.
 Mastercoin tools should be installed and fully updated with the Mastercoin Data in:</p>
 <div class="highlight-python"><div class="highlight"><pre>/var/lib/mastercoin-tools/mastercoin_verify/addresses/
 </pre></div>
 </div>
 </div>
-<div class="section" id="id35">
-<h3>Checks:<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id36">
+<h3>Checks:<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
 <p>Will check/return the date of the parsed date as listed in</p>
 <div class="highlight-python"><div class="highlight"><pre>/var/lib/mastercoin-tools/www/revision.json
 </pre></div>
 </div>
 </div>
-<div class="section" id="id36">
-<h3>Inputs:<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id37">
+<h3>Inputs:<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>address: The address you want to check the balance for</li>
@@ -702,8 +711,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id37">
-<h3>Output:<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id38">
+<h3>Output:<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output</p>
 <p>Completed run will return json that contains:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -717,8 +726,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </div>
 <p><em>Note: If the revision file or currency address files are missing the time is omitted and an error message is returned for balance.</em></p>
 </div>
-<div class="section" id="id38">
-<h3>Running:<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id39">
+<h3>Running:<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
 <p>Standalone running/testing can be done by creating a json file (see input details or example_balance.json for structure)
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python msc-balance.py
@@ -728,22 +737,23 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="getconsensusmsc-py">
 <h2>getConsensusMSC.py<a class="headerlink" href="#getconsensusmsc-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id39">
-<h3>Purpose:<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#id1"><em>Back to Top</em></a></p>
+<div class="section" id="id40">
+<h3>Purpose:<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
 <p>Used to get the consensus of local installation with Online sites
 <em>Note: The final consensus authority is defined by the mastercoin tools code result.</em>
 <a class="reference external" href="https://masterchain.info/general/MSC-difference.txt">Masterchain Consensus Report</a></p>
 </div>
-<div class="section" id="id40">
-<h3>Requirements:<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id41">
+<h3>Requirements:<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
 <p>This script leverages the existing mastercoin tools parsed/validated output.
 Mastercoin tools should be installed and fully updated with the Mastercoin Data in:</p>
 <div class="highlight-python"><div class="highlight"><pre>/var/lib/mastercoin-tools/mastercoin_verify/addresses/
 </pre></div>
 </div>
 </div>
-<div class="section" id="id41">
-<h3>Inputs:<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id42">
+<h3>Inputs:<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the sites you wish to validate consensus against:
 <em>Note: At present generates consensus output for Currency ID 1 (MSC) only.</em></p>
 <ul class="simple">
@@ -760,8 +770,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id42">
-<h3>Output:<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id43">
+<h3>Output:<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output array of address not in consensus</p>
 <p>For each address not in Consensus, completed run will return balance of that address for each site checked in json format:</p>
 <div class="highlight-python"><div class="highlight"><pre>{
@@ -785,8 +795,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id43">
-<h3>Running:<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id44">
+<h3>Running:<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
 <p>Running by creating a json file (see input details) for sites you wish to check or use the provided getConsensus.json
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat getConsensus.json | python getConsensusMSC.py
@@ -813,58 +823,58 @@ You can execute/run the program with:</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#generatetx51-sp-py">generateTX51_SP.py</a><ul>
-<li><a class="reference internal" href="#id1">Purpose:</a></li>
-<li><a class="reference internal" href="#id2">Requirements:</a></li>
-<li><a class="reference internal" href="#id3">Inputs:</a></li>
-<li><a class="reference internal" href="#id14">Output and Running:</a></li>
+<li><a class="reference internal" href="#id2">Purpose:</a></li>
+<li><a class="reference internal" href="#id3">Requirements:</a></li>
+<li><a class="reference internal" href="#id4">Inputs:</a></li>
+<li><a class="reference internal" href="#id15">Output and Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#generatetx53-sp-py">generateTX53_SP.py</a><ul>
-<li><a class="reference internal" href="#id15">Purpose:</a></li>
-<li><a class="reference internal" href="#id16">Requirements:</a></li>
-<li><a class="reference internal" href="#id17">Inputs:</a></li>
-<li><a class="reference internal" href="#id20">Output and Running:</a></li>
+<li><a class="reference internal" href="#id16">Purpose:</a></li>
+<li><a class="reference internal" href="#id17">Requirements:</a></li>
+<li><a class="reference internal" href="#id18">Inputs:</a></li>
+<li><a class="reference internal" href="#id21">Output and Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#msc-createtx-py">msc_createtx.py</a><ul>
-<li><a class="reference internal" href="#id21">Purpose:</a></li>
+<li><a class="reference internal" href="#id22">Purpose:</a></li>
 <li><a class="reference internal" href="#checks">Checks:</a></li>
-<li><a class="reference internal" href="#id22">Inputs:</a></li>
+<li><a class="reference internal" href="#id23">Inputs:</a></li>
 <li><a class="reference internal" href="#output">Output:</a></li>
 <li><a class="reference internal" href="#running">Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#msc-sxsend-py">msc-sxsend.py</a><ul>
-<li><a class="reference internal" href="#id23">Purpose:</a></li>
-<li><a class="reference internal" href="#id24">Checks:</a></li>
-<li><a class="reference internal" href="#id25">Inputs:</a></li>
-<li><a class="reference internal" href="#id26">Output:</a></li>
-<li><a class="reference internal" href="#id27">Running:</a></li>
+<li><a class="reference internal" href="#id24">Purpose:</a></li>
+<li><a class="reference internal" href="#id25">Checks:</a></li>
+<li><a class="reference internal" href="#id26">Inputs:</a></li>
+<li><a class="reference internal" href="#id27">Output:</a></li>
+<li><a class="reference internal" href="#id28">Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#msc-txcreate-py">msc-txcreate.py</a><ul>
-<li><a class="reference internal" href="#id28">Purpose:</a></li>
-<li><a class="reference internal" href="#id29">Checks:</a></li>
-<li><a class="reference internal" href="#id30">Inputs:</a></li>
-<li><a class="reference internal" href="#id31">Output:</a></li>
-<li><a class="reference internal" href="#id32">Running:</a></li>
+<li><a class="reference internal" href="#id29">Purpose:</a></li>
+<li><a class="reference internal" href="#id30">Checks:</a></li>
+<li><a class="reference internal" href="#id31">Inputs:</a></li>
+<li><a class="reference internal" href="#id32">Output:</a></li>
+<li><a class="reference internal" href="#id33">Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#msc-balance-py">msc-balance.py</a><ul>
-<li><a class="reference internal" href="#id33">Purpose:</a></li>
-<li><a class="reference internal" href="#id34">Requirements:</a></li>
-<li><a class="reference internal" href="#id35">Checks:</a></li>
-<li><a class="reference internal" href="#id36">Inputs:</a></li>
-<li><a class="reference internal" href="#id37">Output:</a></li>
-<li><a class="reference internal" href="#id38">Running:</a></li>
+<li><a class="reference internal" href="#id34">Purpose:</a></li>
+<li><a class="reference internal" href="#id35">Requirements:</a></li>
+<li><a class="reference internal" href="#id36">Checks:</a></li>
+<li><a class="reference internal" href="#id37">Inputs:</a></li>
+<li><a class="reference internal" href="#id38">Output:</a></li>
+<li><a class="reference internal" href="#id39">Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#getconsensusmsc-py">getConsensusMSC.py</a><ul>
-<li><a class="reference internal" href="#id39">Purpose:</a></li>
-<li><a class="reference internal" href="#id40">Requirements:</a></li>
-<li><a class="reference internal" href="#id41">Inputs:</a></li>
-<li><a class="reference internal" href="#id42">Output:</a></li>
-<li><a class="reference internal" href="#id43">Running:</a></li>
+<li><a class="reference internal" href="#id40">Purpose:</a></li>
+<li><a class="reference internal" href="#id41">Requirements:</a></li>
+<li><a class="reference internal" href="#id42">Inputs:</a></li>
+<li><a class="reference internal" href="#id43">Output:</a></li>
+<li><a class="reference internal" href="#id44">Running:</a></li>
 </ul>
 </li>
 </ul>
