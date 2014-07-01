@@ -1,4 +1,11 @@
-{
+==========
+Categories
+==========
+.. _categories:
+
+List of suggested categories and subcategories for use with :ref:`Crowdsales <msc_tx51>` and :ref:`Asset Issuances <msc_tx50>`::
+
+ {
     "Accommodation and food service activities": [
         "Accommodation",
         "Food and beverage service activities",
@@ -153,4 +160,4 @@
     "Other": [
         "Other"
     ]
-}
+ }

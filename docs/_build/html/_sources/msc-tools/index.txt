@@ -17,5 +17,6 @@ Contents:
    pages/tools
    pages/obelisk
    pages/troubleshooting
+   pages/categories
 
 

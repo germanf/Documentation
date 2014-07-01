@@ -4,6 +4,13 @@ Tools
 
 List of tools included with the installation and how to use them
 
+:ref:`generateTX50_SP.py <msc_tx50>`
+:ref:`generateTX51_SP.py <msc_tx51>`
+:ref:`generateTX53_SP.py <msc_tx53>`
+:ref:`msc_createtx.py <msc_createtx>`
+
+
+
 .. _msc_tx50:
 
 generateTX50_SP.py
@@ -31,14 +38,14 @@ Takes json input via STDIN for the following variables:
 * `ecosystem <https://github.com/mastercoin-MSC/spec#field-ecosystem>`_: type int - 1 For production deployment, 2 for test deployments
 * `property_type <https://github.com/mastercoin-MSC/spec#field-property-type>`_: type int - 1 for indivisible currency, 2 for divisible (MSC/TMSC are 2, Maidsafecoins are 1)
 * `previous_property_id <https://github.com/mastercoin-MSC/spec#field-property-id>`_: type int - If you are replacing a previous Smart property enter the currency ID here. Otherwise enter 0
-* `property_category <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Main category for your property (Suggested categories.json)
+* `property_category <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Main category for your property (Suggested :ref:`Categories <categories>`)
 * `property_subcategory <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Sub category for your property (See listing on category)
 * `property_name <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Name of your Coin/Token/Property
 * `property_url <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string -  Short url users can go to for more information about the Coin/Token/Property you are creating.
 * `property_data <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Brief description about what your Coin/Token/Property is for
 * `number_properties <https://github.com/mastercoin-MSC/spec#field-number-of-coins>`_: type int - The number of Coins/Tokens/Properties you wish to issue/create. 
-* `transacation_from: type base58 - Your sending address
-* `from_private_key: type base58 - Private Key of the sending address ``*``
+* transacation_from: type base58 - Your sending address
+* from_private_key: type base58 - Private Key of the sending address ``*``
 
   * (Note: Should start with the number 5)
 
@@ -146,7 +153,7 @@ Takes json input via STDIN for the following variables:
 * `ecosystem <https://github.com/mastercoin-MSC/spec#field-ecosystem>`_: type int - 1 For production deployment, 2 for test deployments
 * `property_type <https://github.com/mastercoin-MSC/spec#field-property-type>`_: type int - 1 for indivisible currency, 2 for divisible (MSC/TMSC are 2, Maidsafecoins are 1)
 * `previous_property_id <https://github.com/mastercoin-MSC/spec#field-property-id>`_: type int - If you are replacing a previous Smart property enter the currency ID here. Otherwise enter 0
-* `property_category <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Main category for your property (Suggested categories.json)
+* `property_category <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Main category for your property (Suggested :ref:`Categories <categories>`)
 * `property_subcategory <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Sub category for your property (See listing on category)
 * `property_name <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string - Name of your Coin/Token/Property
 * `property_url <https://github.com/mastercoin-MSC/spec#field-string-255-byte-null-terminated>`_: type string -  Short url users can go to for more information about the Coin/Token/Property you are creating.
@@ -156,8 +163,8 @@ Takes json input via STDIN for the following variables:
 * `deadline <https://github.com/mastercoin-MSC/spec#field-utc-datetime>`_: type int - Time in UTC the Crowdsale should finish/close/stop.
 * `earlybird_bonus <https://github.com/mastercoin-MSC/spec#field-integer-one-byte>`_: type int - Percent extra/week investor gets when investing before the deadline.
 * `percentage_for_issuer <https://github.com/mastercoin-MSC/spec#field-integer-one-byte>`_: type int - Percent credited to the issuer for every investment. (You get this percent per token generate for investors)
-* `transacation_from: type base58 - Your sending address
-* `from_private_key: type base58 - Private Key of the sending address ``*``
+* transacation_from: type base58 - Your sending address
+* from_private_key: type base58 - Private Key of the sending address ``*``
 
   * (Note: Should start with the number 5)
 
