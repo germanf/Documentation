@@ -54,11 +54,321 @@
   <div class="section" id="tools">
 <h1>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h1>
 <p>List of tools included with the installation and how to use them</p>
-<div class="section" id="msc-createtx-py">
-<span id="msc-createtx"></span><h2>msc_createtx.py<a class="headerlink" href="#msc-createtx-py" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="generatetx50-sp-py">
+<span id="msc-tx50"></span><h2>generateTX50_SP.py<a class="headerlink" href="#generatetx50-sp-py" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="purpose">
 <h3>Purpose:<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
-<p>Used to create, sign and/or send a Masterprotocol currency transaction</p>
+<p>Create a New Smart Property</p>
+<p>Creates the raw transacation that when broadcasts will create a New Smart property.
+Located in mastercoin-tools/scripts</p>
+</div>
+<div class="section" id="requirements">
+<h3>Requirements:<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python 2.7.6</li>
+<li>Fully synced Bitcoind node (can be local or remote)</li>
+<li>Private key of the issuing address in bitcoind</li>
+</ul>
+</div>
+<div class="section" id="inputs">
+<h3>Inputs:<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h3>
+<p>Takes json input via STDIN for the following variables:</p>
+<ul class="simple">
+<li>transacation_type: type int - representing the tx type (50)</li>
+<li>ecosystem: type int - 1 For production deployment, 2 for test deployments</li>
+<li>property_type: type int - 1 for indivisible currency, 2 for divisible (MSC/TMSC are 2, Maidsafecoins are 1)</li>
+<li>previous_property_id: type int - If you are replacing a previous Smart property enter the currency ID here. Otherwise enter 0</li>
+<li>property_category: type string - Main category for your property (Suggested categories.json)</li>
+<li>property_subcategory: type string - Sub category for your property (See listing on category)</li>
+<li>property_name: type string - Name of your Coin/Token/Property</li>
+<li>property_url: type string -  Short url users can go to for more information about the Coin/Token/Property you are creating.</li>
+<li>property_data: type string - Brief description about what your Coin/Token/Property is for</li>
+<li>number_properties: type int - The number of Coins/Tokens/Properties you wish to issue/create.</li>
+<li>transacation_from: type base58 - Your sending address</li>
+<li>from_private_key: type base58 - Private Key of the sending address <tt class="docutils literal"><span class="pre">*</span></tt><ul>
+<li>(Note: Should start with the number 5)</li>
+</ul>
+</li>
+</ul>
+<p>The json takes the following format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+          <span class="s">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 50&#39;</span><span class="p">,</span>
+          <span class="s">&quot;ecosystem&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 1&#39;</span><span class="p">,</span>
+          <span class="s">&quot;property_type&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 1&#39;</span><span class="p">,</span>
+          <span class="s">&quot;previous_property_id&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 3&#39;</span><span class="p">,</span>
+          <span class="s">&quot;property_category&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Testing&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_subcategory&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Testing Smart Property&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_name&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Test Property 1&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_url&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: mastercoinfoundation.org&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_data&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Test Data&quot;</span><span class="p">,</span>
+          <span class="s">&quot;number_properties&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 10&#39;</span><span class="p">,</span>
+          <span class="s">&quot;transaction_from&quot;</span><span class="p">:</span> <span class="s">&quot;type: base58&quot;</span><span class="p">,</span>
+          <span class="s">&quot;from_private_key&quot;</span><span class="p">:</span> <span class="s">&quot;type: base58&quot;</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<p>Ex:</p>
+<p><em>Note: for security the following was a brand new empty Address/key. You should replace it&#8217;s details with your own applicable info</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+        <span class="s">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">&quot;ecosystem&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">&quot;property_type&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">&quot;previous_property_id&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">&quot;property_category&quot;</span><span class="p">:</span> <span class="s">&quot;Testing&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_subcategory&quot;</span><span class="p">:</span> <span class="s">&quot;Smart Property Test Sequence 1&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_name&quot;</span><span class="p">:</span> <span class="s">&quot;Doubloons&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_url&quot;</span><span class="p">:</span> <span class="s">&quot;http://tinyurl/dubloons&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_data&quot;</span><span class="p">:</span> <span class="s">&quot;Test Issuing a new Currency&quot;</span><span class="p">,</span>
+        <span class="s">&quot;number_properties&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s">&quot;transaction_from&quot;</span><span class="p">:</span> <span class="s">&quot;1GGJMZoaxYMS4jsiLwPVbofe5YJyM6ER2i&quot;</span><span class="p">,</span>
+        <span class="s">&quot;from_private_key&quot;</span><span class="p">:</span> <span class="s">&quot;5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For reference, here is what the brainwallet.org generator page for the above address looks like.
+Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
+<img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
+</div>
+<div class="section" id="output-and-running">
+<h3>Output and Running:<a class="headerlink" href="#output-and-running" title="Permalink to this headline">¶</a></h3>
+<p>You can execute/run the program with:</p>
+<div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python generateTX50_SP.py
+</pre></div>
+</div>
+<p>Will return a json formated output.
+Errors will be returned with json that contains</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;NOT OK&quot;</span><span class="p">,</span> <span class="s">&quot;fix&quot;</span><span class="p">:</span> <span class="s">&quot;bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463&quot;</span><span class="p">,</span>
+       <span class="s">&quot;error&quot;</span><span class="p">:</span> <span class="s">&quot;Couldn&#39;t find address in wallet, please run &#39;fix&#39; on the machine&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case you need to import the private key into bitcoind and then run again.</p>
+<blockquote>
+<div>bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463 false</div></blockquote>
+<p>Successful run will return json that contains the raw hex:</p>
+<div class="highlight-python"><div class="highlight"><pre>    {
+&quot;rawtransaction&quot;: {
+         &quot;hex&quot;: &quot;0100000001e604......90b53ae00000000&quot;,
+             &quot;complete&quot;: true
+             }
+    }
+</pre></div>
+</div>
+<p>Once you have the completed successful raw hex send the transaction by copying and pasting that hex string (without its quotes) as an argument to bitcoind sendrawtransaction</p>
+<blockquote>
+<div>bitcoind sendrawtransaction 0100000001e604......90b53ae00000000</div></blockquote>
+<p>The output will be the transaction hash ID. Check <a class="reference external" href="http://blockchain.info">http://blockchain.info</a> to see the status of the transation. You can also find the transaction via blockchain.info&#8217;s page for the issuing address.</p>
+</div>
+</div>
+<div class="section" id="generatetx51-sp-py">
+<span id="msc-tx51"></span><h2>generateTX51_SP.py<a class="headerlink" href="#generatetx51-sp-py" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Purpose:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Create a New Crowdsale</p>
+<p>Creates the raw transacation that when broadcasts will create a New Crowdsale.
+Located in mastercoin-tools/scripts</p>
+</div>
+<div class="section" id="id2">
+<h3>Requirements:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python 2.7.6</li>
+<li>Fully synced Bitcoind node (can be local or remote)</li>
+<li>Private key of the issuing address in bitcoind</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Inputs:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Takes json input via STDIN for the following variables:</p>
+<ul class="simple">
+<li>transacation_type: type int - representing the tx type (51)</li>
+<li>ecosystem: type int - 1 For production deployment, 2 for test deployments</li>
+<li>property_type: type int - 1 for indivisible currency, 2 for divisible (MSC/TMSC are 2, Maidsafecoins are 1)</li>
+<li>previous_property_id: type int - If you are replacing a previous Smart property enter the currency ID here. Otherwise enter 0</li>
+<li>property_category: type string - Main category for your property (Suggested categories.json)</li>
+<li>property_subcategory: type string - Sub category for your property (See listing on category)</li>
+<li>property_name: type string - Name of your Coin/Token/Property</li>
+<li>property_url: type string -  Short url users can go to for more information about the Coin/Token/Property you are creating.</li>
+<li>property_data: type string - Brief description about what your Coin/Token/Property is for</li>
+<li>currency_identifier: type int - The currency ID to accept for the crowdsale (what coin investors have to send) ex: 2 (Test MSC)</li>
+<li>number_properties: type int - The number of Coins/Tokens/Properties you wish to issue/create per coin invested above.</li>
+<li>deadline: type int - Time in UTC the Crowdsale should finish/close/stop.</li>
+<li>earlybird_bonus: type int - Percent extra/week investor gets when investing before the deadline.</li>
+<li>percentage_for_issuer: type int - Percent credited to the issuer for every investment. (You get this percent per token generate for investors)</li>
+<li>transacation_from: type base58 - Your sending address</li>
+<li>from_private_key: type base58 - Private Key of the sending address <tt class="docutils literal"><span class="pre">*</span></tt><ul>
+<li>(Note: Should start with the number 5)</li>
+</ul>
+</li>
+</ul>
+<p>The json takes the following format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+          <span class="s">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 51&#39;</span><span class="p">,</span>
+          <span class="s">&quot;ecosystem&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 1&#39;</span><span class="p">,</span>
+          <span class="s">&quot;property_type&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 1&#39;</span><span class="p">,</span>
+          <span class="s">&quot;previous_property_id&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 3&#39;</span><span class="p">,</span>
+          <span class="s">&quot;property_category&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Testing&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_subcategory&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Testing Smart Property&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_name&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Test Property 1&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_url&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: mastercoinfoundation.org&quot;</span><span class="p">,</span>
+          <span class="s">&quot;property_data&quot;</span><span class="p">:</span> <span class="s">&quot;type: string, ex: Test Data&quot;</span><span class="p">,</span>
+          <span class="s">&quot;currency_identifier_desired&quot;</span><span class="p">:</span> <span class="s">&#39;type int, ex: 2&#39;</span><span class="p">,</span>
+          <span class="s">&quot;number_properties&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 10&#39;</span><span class="p">,</span>
+          <span class="s">&quot;deadline&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 7731439200&#39;</span><span class="p">,</span>
+          <span class="s">&quot;earlybird_bonus&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 10&#39;</span><span class="p">,</span>
+          <span class="s">&quot;percentage_for_issuer&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 12&#39;</span><span class="p">,</span>
+          <span class="s">&quot;transaction_from&quot;</span><span class="p">:</span> <span class="s">&quot;type: base58&quot;</span><span class="p">,</span>
+          <span class="s">&quot;from_private_key&quot;</span><span class="p">:</span> <span class="s">&quot;type: base58&quot;</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<p>Ex:</p>
+<p><em>Note: for security the following was a brand new empty Address/key. You should replace it&#8217;s details with your own applicable info</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+        <span class="s">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="mi">51</span><span class="p">,</span>
+        <span class="s">&quot;ecosystem&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">&quot;property_type&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">&quot;previous_property_id&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">&quot;property_category&quot;</span><span class="p">:</span> <span class="s">&quot;Testing&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_subcategory&quot;</span><span class="p">:</span> <span class="s">&quot;Smart Property Test Sequence 1&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_name&quot;</span><span class="p">:</span> <span class="s">&quot;Doubloons-Sale&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_url&quot;</span><span class="p">:</span> <span class="s">&quot;http://tinyurl/dubloons&quot;</span><span class="p">,</span>
+        <span class="s">&quot;property_data&quot;</span><span class="p">:</span> <span class="s">&quot;Test Issuing a new Currency&quot;</span><span class="p">,</span>
+        <span class="s">&quot;currency_identifier_desired&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s">&quot;number_properties&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+        <span class="s">&quot;deadline&quot;</span><span class="p">:</span> <span class="mi">1397869200</span><span class="p">,</span>
+        <span class="s">&quot;earlybird_bonus&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">&quot;percentage_for_issuer&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">&quot;transaction_from&quot;</span><span class="p">:</span> <span class="s">&quot;1GGJMZoaxYMS4jsiLwPVbofe5YJyM6ER2i&quot;</span><span class="p">,</span>
+        <span class="s">&quot;from_private_key&quot;</span><span class="p">:</span> <span class="s">&quot;5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For reference, here is what the brainwallet.org generator page for the above address looks like.
+Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
+<img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
+</div>
+<div class="section" id="id4">
+<h3>Output and Running:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>You can execute/run the program with:</p>
+<div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python generateTX50_SP.py
+</pre></div>
+</div>
+<p>Will return a json formated output.
+Errors will be returned with json that contains</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;NOT OK&quot;</span><span class="p">,</span> <span class="s">&quot;fix&quot;</span><span class="p">:</span> <span class="s">&quot;bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463&quot;</span><span class="p">,</span>
+       <span class="s">&quot;error&quot;</span><span class="p">:</span> <span class="s">&quot;Couldn&#39;t find address in wallet, please run &#39;fix&#39; on the machine&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case you need to import the private key into bitcoind and then run again.</p>
+<blockquote>
+<div>bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463 false</div></blockquote>
+<p>Successful run will return json that contains the raw hex:</p>
+<div class="highlight-python"><div class="highlight"><pre>    {
+&quot;rawtransaction&quot;: {
+         &quot;hex&quot;: &quot;0100000001e604......90b53ae00000000&quot;,
+             &quot;complete&quot;: true
+             }
+    }
+</pre></div>
+</div>
+<p>Once you have the completed successful raw hex send the transaction by copying and pasting that hex string (without its quotes) as an argument to bitcoind sendrawtransaction</p>
+<blockquote>
+<div>bitcoind sendrawtransaction 0100000001e604......90b53ae00000000</div></blockquote>
+<p>The output will be the transaction hash ID. Check <a class="reference external" href="http://blockchain.info">http://blockchain.info</a> to see the status of the transation. You can also find the transaction via blockchain.info&#8217;s page for the issuing address.</p>
+</div>
+</div>
+<div class="section" id="generatetx53-sp-py">
+<span id="msc-tx53"></span><h2>generateTX53_SP.py<a class="headerlink" href="#generatetx53-sp-py" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>Purpose:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Close an existing Crowdsale early.</p>
+<p>Creates the raw transacation that when broadcasts will close the current crowdsale Crowdsale immediately.
+Located in mastercoin-tools/scripts</p>
+</div>
+<div class="section" id="id6">
+<h3>Requirements:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python 2.7.6</li>
+<li>Fully synced Bitcoind node (can be local or remote)</li>
+<li>Private key of the issuing address in bitcoind</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Inputs:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Takes json input via STDIN for the following variables:</p>
+<ul class="simple">
+<li>transacation_type: type int - representing the tx type (53)</li>
+<li>previous_property_id: type int - The currency ID for the Crowdsale property to close (ex 4)</li>
+<li>transacation_from: type base58 - Your sending address</li>
+<li>from_private_key: type base58 - Private Key of the sending address <tt class="docutils literal"><span class="pre">*</span></tt><ul>
+<li>(Note: Should start with the number 5)</li>
+</ul>
+</li>
+</ul>
+<p>The json takes the following format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+          <span class="s">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 53&#39;</span><span class="p">,</span>
+          <span class="s">&quot;property_type&quot;</span><span class="p">:</span> <span class="s">&#39;type: int, ex: 1&#39;</span><span class="p">,</span>
+          <span class="s">&quot;transaction_from&quot;</span><span class="p">:</span> <span class="s">&quot;type: base58&quot;</span><span class="p">,</span>
+          <span class="s">&quot;from_private_key&quot;</span><span class="p">:</span> <span class="s">&quot;type: base58&quot;</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<p>Ex:</p>
+<p><em>Note: for security the following was a brand new empty Address/key. You should replace it&#8217;s details with your own applicable info</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+        <span class="s">&quot;transaction_type&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
+        <span class="s">&quot;property_type&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s">&quot;transaction_from&quot;</span><span class="p">:</span> <span class="s">&quot;1GGJMZoaxYMS4jsiLwPVbofe5YJyM6ER2i&quot;</span><span class="p">,</span>
+        <span class="s">&quot;from_private_key&quot;</span><span class="p">:</span> <span class="s">&quot;5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For reference, here is what the brainwallet.org generator page for the above address looks like.
+Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
+<img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
+</div>
+<div class="section" id="id8">
+<h3>Output and Running:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>You can execute/run the program with:</p>
+<div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python generateTX53_SP.py
+</pre></div>
+</div>
+<p>Will return a json formated output.
+Errors will be returned with json that contains</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+   <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;NOT OK&quot;</span><span class="p">,</span> <span class="s">&quot;fix&quot;</span><span class="p">:</span> <span class="s">&quot;bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463&quot;</span><span class="p">,</span>
+       <span class="s">&quot;error&quot;</span><span class="p">:</span> <span class="s">&quot;Couldn&#39;t find address in wallet, please run &#39;fix&#39; on the machine&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case you need to import the private key into bitcoind and then run again.</p>
+<blockquote>
+<div>bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463 false</div></blockquote>
+<p>Successful run will return json that contains the raw hex:</p>
+<div class="highlight-python"><div class="highlight"><pre>    {
+&quot;rawtransaction&quot;: {
+         &quot;hex&quot;: &quot;0100000001e604......90b53ae00000000&quot;,
+             &quot;complete&quot;: true
+             }
+    }
+</pre></div>
+</div>
+<p>Once you have the completed successful raw hex send the transaction by copying and pasting that hex string (without its quotes) as an argument to bitcoind sendrawtransaction</p>
+<blockquote>
+<div>bitcoind sendrawtransaction 0100000001e604......90b53ae00000000</div></blockquote>
+<p>The output will be the transaction hash ID. Check <a class="reference external" href="http://blockchain.info">http://blockchain.info</a> to see the status of the transation. You can also find the transaction via blockchain.info&#8217;s page for the issuing address.</p>
+</div>
+</div>
+<div class="section" id="msc-createtx-py">
+<span id="msc-createtx"></span><h2>msc_createtx.py<a class="headerlink" href="#msc-createtx-py" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>Purpose:<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>Used to create, sign and/or send a Masterprotocol currency transaction.
+Located in mastercoin-tools/scripts</p>
 </div>
 <div class="section" id="checks">
 <h3>Checks:<a class="headerlink" href="#checks" title="Permalink to this headline">¶</a></h3>
@@ -74,8 +384,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="inputs">
-<h3>Inputs:<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Inputs:<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>transaction_from: The Public Address of the Sender</li>
@@ -165,13 +475,13 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="msc-sxsend-py">
 <h2>msc-sxsend.py<a class="headerlink" href="#msc-sxsend-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>Purpose:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Purpose:<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>DEPRECIATED, Please see <a class="reference internal" href="#msc-createtx"><em>msc_createtx.py</em></a></p>
 <p>Used to create (and/or send) a Mastercoin transaction</p>
 </div>
-<div class="section" id="id2">
-<h3>Checks:<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Checks:<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <p>Checks from address to make sure it has:</p>
 <ul class="simple">
 <li>Enough BTC to create/send the transaction</li>
@@ -181,8 +491,8 @@ You can execute/run the program with:</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h3>Inputs:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id13">
+<h3>Inputs:<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>transaction_from: The Public Address of the Sender</li>
@@ -231,8 +541,8 @@ You can execute/run the program with:</p>
 Take note of the &#8216;Uncompressed/Compressed&#8217; option</p>
 <img alt="../../_images/brainwallet.uncompressed.png" class="align-center" src="../../_images/brainwallet.uncompressed.png" />
 </div>
-<div class="section" id="id4">
-<h3>Output:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Output:<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output.
 Errors will be returned with json that contains</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -252,8 +562,8 @@ Errors will be returned with json that contains</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id5">
-<h3>Running:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Running:<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>Standalone running/testing can be done by creating a json file (see input details or example_send.json for structure)
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python msc_sxsend.py
@@ -263,13 +573,13 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="msc-txcreate-py">
 <h2>msc-txcreate.py<a class="headerlink" href="#msc-txcreate-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id6">
-<h3>Purpose:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Purpose:<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>DEPRECIATED, Please see <a class="reference internal" href="#msc-createtx"><em>msc_createtx.py</em></a></p>
 <p>Used to create an unsigned Mastercoin transaction</p>
 </div>
-<div class="section" id="id7">
-<h3>Checks:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Checks:<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>Checks from address to make sure it has:</p>
 <ul class="simple">
 <li>Enough BTC to create/send the transaction</li>
@@ -279,8 +589,8 @@ You can execute/run the program with:</p>
 </li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h3>Inputs:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Inputs:<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>transaction_from: The Public Address of the Sender</li>
@@ -310,8 +620,8 @@ You can execute/run the program with:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id9">
-<h3>Output:<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Output:<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output.
 Errors will be returned with json that contains</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -329,8 +639,8 @@ Errors will be returned with json that contains</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id10">
-<h3>Running:<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>Running:<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <p>Standalone running/testing can be done by creating a json file (see input details or example_send.json for structure)
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python msc-txcreate.py
@@ -340,27 +650,27 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="msc-balance-py">
 <span id="msc-balance"></span><h2>msc-balance.py<a class="headerlink" href="#msc-balance-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id11">
-<h3>Purpose:<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Purpose:<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <p>Used to get the Mastercoin balance of an address</p>
 </div>
-<div class="section" id="requirements">
-<h3>Requirements:<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Requirements:<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <p>This script leverages the existing mastercoin tools parsed/validated output.
 Mastercoin tools should be installed and fully updated with the Mastercoin Data in:</p>
 <div class="highlight-python"><div class="highlight"><pre>/var/lib/mastercoin-tools/mastercoin_verify/addresses/
 </pre></div>
 </div>
 </div>
-<div class="section" id="id12">
-<h3>Checks:<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Checks:<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <p>Will check/return the date of the parsed date as listed in</p>
 <div class="highlight-python"><div class="highlight"><pre>/var/lib/mastercoin-tools/www/revision.json
 </pre></div>
 </div>
 </div>
-<div class="section" id="id13">
-<h3>Inputs:<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id24">
+<h3>Inputs:<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the following variables:</p>
 <ul class="simple">
 <li>address: The address you want to check the balance for</li>
@@ -385,8 +695,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id14">
-<h3>Output:<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id25">
+<h3>Output:<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output</p>
 <p>Completed run will return json that contains:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
@@ -400,8 +710,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </div>
 <p><em>Note: If the revision file or currency address files are missing the time is omitted and an error message is returned for balance.</em></p>
 </div>
-<div class="section" id="id15">
-<h3>Running:<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h3>Running:<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
 <p>Standalone running/testing can be done by creating a json file (see input details or example_balance.json for structure)
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat your_file.json | python msc-balance.py
@@ -411,22 +721,22 @@ You can execute/run the program with:</p>
 </div>
 <div class="section" id="getconsensusmsc-py">
 <h2>getConsensusMSC.py<a class="headerlink" href="#getconsensusmsc-py" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id16">
-<h3>Purpose:<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id27">
+<h3>Purpose:<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <p>Used to get the consensus of local installation with Online sites
 <em>Note: The final consensus authority is defined by the mastercoin tools code result.</em>
 <a class="reference external" href="https://masterchain.info/general/MSC-difference.txt">Masterchain Consensus Report</a></p>
 </div>
-<div class="section" id="id17">
-<h3>Requirements:<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3>Requirements:<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <p>This script leverages the existing mastercoin tools parsed/validated output.
 Mastercoin tools should be installed and fully updated with the Mastercoin Data in:</p>
 <div class="highlight-python"><div class="highlight"><pre>/var/lib/mastercoin-tools/mastercoin_verify/addresses/
 </pre></div>
 </div>
 </div>
-<div class="section" id="id18">
-<h3>Inputs:<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id29">
+<h3>Inputs:<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
 <p>Takes json input via STDIN for the sites you wish to validate consensus against:
 <em>Note: At present generates consensus output for Currency ID 1 (MSC) only.</em></p>
 <ul class="simple">
@@ -443,8 +753,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id19">
-<h3>Output:<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id30">
+<h3>Output:<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
 <p>Will return a json formated output array of address not in consensus</p>
 <p>For each address not in Consensus, completed run will return balance of that address for each site checked in json format:</p>
 <div class="highlight-python"><div class="highlight"><pre>{
@@ -468,8 +778,8 @@ Mastercoin tools should be installed and fully updated with the Mastercoin Data 
 </pre></div>
 </div>
 </div>
-<div class="section" id="id20">
-<h3>Running:<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id31">
+<h3>Running:<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
 <p>Running by creating a json file (see input details) for sites you wish to check or use the provided getConsensus.json
 You can execute/run the program with:</p>
 <div class="highlight-python"><div class="highlight"><pre>cat getConsensus.json | python getConsensusMSC.py
@@ -488,45 +798,66 @@ You can execute/run the program with:</p>
   <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Tools</a><ul>
-<li><a class="reference internal" href="#msc-createtx-py">msc_createtx.py</a><ul>
+<li><a class="reference internal" href="#generatetx50-sp-py">generateTX50_SP.py</a><ul>
 <li><a class="reference internal" href="#purpose">Purpose:</a></li>
-<li><a class="reference internal" href="#checks">Checks:</a></li>
+<li><a class="reference internal" href="#requirements">Requirements:</a></li>
 <li><a class="reference internal" href="#inputs">Inputs:</a></li>
+<li><a class="reference internal" href="#output-and-running">Output and Running:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generatetx51-sp-py">generateTX51_SP.py</a><ul>
+<li><a class="reference internal" href="#id1">Purpose:</a></li>
+<li><a class="reference internal" href="#id2">Requirements:</a></li>
+<li><a class="reference internal" href="#id3">Inputs:</a></li>
+<li><a class="reference internal" href="#id4">Output and Running:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generatetx53-sp-py">generateTX53_SP.py</a><ul>
+<li><a class="reference internal" href="#id5">Purpose:</a></li>
+<li><a class="reference internal" href="#id6">Requirements:</a></li>
+<li><a class="reference internal" href="#id7">Inputs:</a></li>
+<li><a class="reference internal" href="#id8">Output and Running:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#msc-createtx-py">msc_createtx.py</a><ul>
+<li><a class="reference internal" href="#id9">Purpose:</a></li>
+<li><a class="reference internal" href="#checks">Checks:</a></li>
+<li><a class="reference internal" href="#id10">Inputs:</a></li>
 <li><a class="reference internal" href="#output">Output:</a></li>
 <li><a class="reference internal" href="#running">Running:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#msc-sxsend-py">msc-sxsend.py</a><ul>
-<li><a class="reference internal" href="#id1">Purpose:</a></li>
-<li><a class="reference internal" href="#id2">Checks:</a></li>
-<li><a class="reference internal" href="#id3">Inputs:</a></li>
-<li><a class="reference internal" href="#id4">Output:</a></li>
-<li><a class="reference internal" href="#id5">Running:</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#msc-txcreate-py">msc-txcreate.py</a><ul>
-<li><a class="reference internal" href="#id6">Purpose:</a></li>
-<li><a class="reference internal" href="#id7">Checks:</a></li>
-<li><a class="reference internal" href="#id8">Inputs:</a></li>
-<li><a class="reference internal" href="#id9">Output:</a></li>
-<li><a class="reference internal" href="#id10">Running:</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#msc-balance-py">msc-balance.py</a><ul>
 <li><a class="reference internal" href="#id11">Purpose:</a></li>
-<li><a class="reference internal" href="#requirements">Requirements:</a></li>
 <li><a class="reference internal" href="#id12">Checks:</a></li>
 <li><a class="reference internal" href="#id13">Inputs:</a></li>
 <li><a class="reference internal" href="#id14">Output:</a></li>
 <li><a class="reference internal" href="#id15">Running:</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#getconsensusmsc-py">getConsensusMSC.py</a><ul>
+<li><a class="reference internal" href="#msc-txcreate-py">msc-txcreate.py</a><ul>
 <li><a class="reference internal" href="#id16">Purpose:</a></li>
-<li><a class="reference internal" href="#id17">Requirements:</a></li>
+<li><a class="reference internal" href="#id17">Checks:</a></li>
 <li><a class="reference internal" href="#id18">Inputs:</a></li>
 <li><a class="reference internal" href="#id19">Output:</a></li>
 <li><a class="reference internal" href="#id20">Running:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#msc-balance-py">msc-balance.py</a><ul>
+<li><a class="reference internal" href="#id21">Purpose:</a></li>
+<li><a class="reference internal" href="#id22">Requirements:</a></li>
+<li><a class="reference internal" href="#id23">Checks:</a></li>
+<li><a class="reference internal" href="#id24">Inputs:</a></li>
+<li><a class="reference internal" href="#id25">Output:</a></li>
+<li><a class="reference internal" href="#id26">Running:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getconsensusmsc-py">getConsensusMSC.py</a><ul>
+<li><a class="reference internal" href="#id27">Purpose:</a></li>
+<li><a class="reference internal" href="#id28">Requirements:</a></li>
+<li><a class="reference internal" href="#id29">Inputs:</a></li>
+<li><a class="reference internal" href="#id30">Output:</a></li>
+<li><a class="reference internal" href="#id31">Running:</a></li>
 </ul>
 </li>
 </ul>

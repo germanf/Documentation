@@ -4,6 +4,338 @@ Tools
 
 List of tools included with the installation and how to use them
 
+.. _msc_tx50:
+
+generateTX50_SP.py
+------------------
+
+Purpose:
+^^^^^^^^
+Create a New Smart Property
+
+Creates the raw transacation that when broadcasts will create a New Smart property.
+Located in mastercoin-tools/scripts
+
+Requirements:
+^^^^^^^^^^^^^
+
+* Python 2.7.6
+* Fully synced Bitcoind node (can be local or remote)
+* Private key of the issuing address in bitcoind
+
+Inputs:
+^^^^^^^
+Takes json input via STDIN for the following variables:
+
+* transacation_type: type int - representing the tx type (50)
+* ecosystem: type int - 1 For production deployment, 2 for test deployments
+* property_type: type int - 1 for indivisible currency, 2 for divisible (MSC/TMSC are 2, Maidsafecoins are 1)
+* previous_property_id: type int - If you are replacing a previous Smart property enter the currency ID here. Otherwise enter 0
+* property_category: type string - Main category for your property (Suggested categories.json)
+* property_subcategory: type string - Sub category for your property (See listing on category)
+* property_name: type string - Name of your Coin/Token/Property
+* property_url: type string -  Short url users can go to for more information about the Coin/Token/Property you are creating.
+* property_data: type string - Brief description about what your Coin/Token/Property is for
+* number_properties: type int - The number of Coins/Tokens/Properties you wish to issue/create. 
+* transacation_from: type base58 - Your sending address
+* from_private_key: type base58 - Private Key of the sending address ``*``
+
+  * (Note: Should start with the number 5)
+
+
+The json takes the following format::
+
+        { 
+		  "transaction_type": 'type: int, ex: 50',
+		  "ecosystem": 'type: int, ex: 1',
+		  "property_type": 'type: int, ex: 1',
+		  "previous_property_id": 'type: int, ex: 3',
+		  "property_category": "type: string, ex: Testing",
+		  "property_subcategory": "type: string, ex: Testing Smart Property",
+		  "property_name": "type: string, ex: Test Property 1",
+		  "property_url": "type: string, ex: mastercoinfoundation.org",
+		  "property_data": "type: string, ex: Test Data",
+		  "number_properties": 'type: int, ex: 10',
+		  "transaction_from": "type: base58",
+		  "from_private_key": "type: base58"
+		}
+
+Ex:
+
+*Note: for security the following was a brand new empty Address/key. You should replace it's details with your own applicable info*::
+
+		{
+			"transaction_type": 50,
+			"ecosystem": 2,
+			"property_type": 2,
+			"previous_property_id": 0,
+			"property_category": "Testing",
+			"property_subcategory": "Smart Property Test Sequence 1",
+			"property_name": "Doubloons",
+			"property_url": "http://tinyurl/dubloons",
+			"property_data": "Test Issuing a new Currency",
+			"number_properties": 1000,
+			"transaction_from": "1GGJMZoaxYMS4jsiLwPVbofe5YJyM6ER2i",
+			"from_private_key": "5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb"
+		}
+
+For reference, here is what the brainwallet.org generator page for the above address looks like.
+Take note of the 'Uncompressed/Compressed' option
+
+.. image:: brainwallet.uncompressed.png
+    :align: center
+
+Output and Running:
+^^^^^^^^^^^^^^^^^^^
+You can execute/run the program with::
+
+ cat your_file.json | python generateTX50_SP.py
+ 
+Will return a json formated output.
+Errors will be returned with json that contains ::
+
+ {
+    "status": "NOT OK", "fix": "bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463", 
+	"error": "Couldn't find address in wallet, please run 'fix' on the machine"
+ }
+ 
+In this case you need to import the private key into bitcoind and then run again.
+
+  bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463 false
+
+Successful run will return json that contains the raw hex::
+
+	{ 
+    "rawtransaction": {
+	     "hex": "0100000001e604......90b53ae00000000", 
+		 "complete": true
+		 }
+	}
+
+Once you have the completed successful raw hex send the transaction by copying and pasting that hex string (without its quotes) as an argument to bitcoind sendrawtransaction
+
+   bitcoind sendrawtransaction 0100000001e604......90b53ae00000000
+
+The output will be the transaction hash ID. Check http://blockchain.info to see the status of the transation. You can also find the transaction via blockchain.info's page for the issuing address.
+
+
+.. _msc_tx51:
+
+generateTX51_SP.py
+------------------
+
+Purpose:
+^^^^^^^^
+Create a New Crowdsale
+
+Creates the raw transacation that when broadcasts will create a New Crowdsale.
+Located in mastercoin-tools/scripts
+
+Requirements:
+^^^^^^^^^^^^^
+
+* Python 2.7.6
+* Fully synced Bitcoind node (can be local or remote)
+* Private key of the issuing address in bitcoind
+
+Inputs:
+^^^^^^^
+Takes json input via STDIN for the following variables:
+
+* transacation_type: type int - representing the tx type (51)
+* ecosystem: type int - 1 For production deployment, 2 for test deployments
+* property_type: type int - 1 for indivisible currency, 2 for divisible (MSC/TMSC are 2, Maidsafecoins are 1)
+* previous_property_id: type int - If you are replacing a previous Smart property enter the currency ID here. Otherwise enter 0
+* property_category: type string - Main category for your property (Suggested categories.json)
+* property_subcategory: type string - Sub category for your property (See listing on category)
+* property_name: type string - Name of your Coin/Token/Property
+* property_url: type string -  Short url users can go to for more information about the Coin/Token/Property you are creating.
+* property_data: type string - Brief description about what your Coin/Token/Property is for
+* currency_identifier: type int - The currency ID to accept for the crowdsale (what coin investors have to send) ex: 2 (Test MSC)
+* number_properties: type int - The number of Coins/Tokens/Properties you wish to issue/create per coin invested above. 
+* deadline: type int - Time in UTC the Crowdsale should finish/close/stop. 
+* earlybird_bonus: type int - Percent extra/week investor gets when investing before the deadline. 
+* percentage_for_issuer: type int - Percent credited to the issuer for every investment. (You get this percent per token generate for investors)
+* transacation_from: type base58 - Your sending address
+* from_private_key: type base58 - Private Key of the sending address ``*``
+
+  * (Note: Should start with the number 5)
+
+
+The json takes the following format::
+
+        { 
+		  "transaction_type": 'type: int, ex: 51',
+		  "ecosystem": 'type: int, ex: 1',
+		  "property_type": 'type: int, ex: 1',
+		  "previous_property_id": 'type: int, ex: 3',
+		  "property_category": "type: string, ex: Testing",
+		  "property_subcategory": "type: string, ex: Testing Smart Property",
+		  "property_name": "type: string, ex: Test Property 1",
+		  "property_url": "type: string, ex: mastercoinfoundation.org",
+		  "property_data": "type: string, ex: Test Data",
+		  "currency_identifier_desired": 'type int, ex: 2',
+		  "number_properties": 'type: int, ex: 10',
+		  "deadline": 'type: int, ex: 7731439200',
+		  "earlybird_bonus": 'type: int, ex: 10',
+		  "percentage_for_issuer": 'type: int, ex: 12',
+		  "transaction_from": "type: base58",
+		  "from_private_key": "type: base58"
+		}
+
+Ex:
+
+*Note: for security the following was a brand new empty Address/key. You should replace it's details with your own applicable info*::
+
+		{
+			"transaction_type": 51,
+			"ecosystem": 2,
+			"property_type": 2,
+			"previous_property_id": 0,
+			"property_category": "Testing",
+			"property_subcategory": "Smart Property Test Sequence 1",
+			"property_name": "Doubloons-Sale",
+			"property_url": "http://tinyurl/dubloons",
+			"property_data": "Test Issuing a new Currency",
+			"currency_identifier_desired": 2,
+			"number_properties": 1000,
+			"deadline": 1397869200,
+			"earlybird_bonus": 0,
+			"percentage_for_issuer": 0,
+			"transaction_from": "1GGJMZoaxYMS4jsiLwPVbofe5YJyM6ER2i",
+			"from_private_key": "5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb"
+		}
+
+For reference, here is what the brainwallet.org generator page for the above address looks like.
+Take note of the 'Uncompressed/Compressed' option
+
+.. image:: brainwallet.uncompressed.png
+    :align: center
+
+Output and Running:
+^^^^^^^^^^^^^^^^^^^
+You can execute/run the program with::
+
+ cat your_file.json | python generateTX50_SP.py
+ 
+Will return a json formated output.
+Errors will be returned with json that contains ::
+
+ {
+    "status": "NOT OK", "fix": "bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463", 
+	"error": "Couldn't find address in wallet, please run 'fix' on the machine"
+ }
+ 
+In this case you need to import the private key into bitcoind and then run again.
+
+  bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463 false
+
+Successful run will return json that contains the raw hex::
+
+	{ 
+    "rawtransaction": {
+	     "hex": "0100000001e604......90b53ae00000000", 
+		 "complete": true
+		 }
+	}
+
+Once you have the completed successful raw hex send the transaction by copying and pasting that hex string (without its quotes) as an argument to bitcoind sendrawtransaction
+
+   bitcoind sendrawtransaction 0100000001e604......90b53ae00000000
+
+The output will be the transaction hash ID. Check http://blockchain.info to see the status of the transation. You can also find the transaction via blockchain.info's page for the issuing address.
+
+.. _msc_tx53:
+
+generateTX53_SP.py
+------------------
+
+Purpose:
+^^^^^^^^
+Close an existing Crowdsale early.
+
+Creates the raw transacation that when broadcasts will close the current crowdsale Crowdsale immediately.
+Located in mastercoin-tools/scripts
+
+Requirements:
+^^^^^^^^^^^^^
+
+* Python 2.7.6
+* Fully synced Bitcoind node (can be local or remote)
+* Private key of the issuing address in bitcoind
+
+Inputs:
+^^^^^^^
+Takes json input via STDIN for the following variables:
+
+* transacation_type: type int - representing the tx type (53)
+* previous_property_id: type int - The currency ID for the Crowdsale property to close (ex 4)
+* transacation_from: type base58 - Your sending address
+* from_private_key: type base58 - Private Key of the sending address ``*``
+
+  * (Note: Should start with the number 5)
+
+
+The json takes the following format::
+
+        { 
+		  "transaction_type": 'type: int, ex: 53',
+		  "property_type": 'type: int, ex: 1',
+		  "transaction_from": "type: base58",
+		  "from_private_key": "type: base58"
+		}
+
+Ex:
+
+*Note: for security the following was a brand new empty Address/key. You should replace it's details with your own applicable info*::
+
+		{
+			"transaction_type": 53,
+			"property_type": 4,
+			"transaction_from": "1GGJMZoaxYMS4jsiLwPVbofe5YJyM6ER2i",
+			"from_private_key": "5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb"
+		}
+
+For reference, here is what the brainwallet.org generator page for the above address looks like.
+Take note of the 'Uncompressed/Compressed' option
+
+.. image:: brainwallet.uncompressed.png
+    :align: center
+
+Output and Running:
+^^^^^^^^^^^^^^^^^^^
+You can execute/run the program with::
+
+ cat your_file.json | python generateTX53_SP.py
+ 
+Will return a json formated output.
+Errors will be returned with json that contains ::
+
+ {
+    "status": "NOT OK", "fix": "bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463", 
+	"error": "Couldn't find address in wallet, please run 'fix' on the machine"
+ }
+ 
+In this case you need to import the private key into bitcoind and then run again.
+
+  bitcoind importprivkey 5JXxd7qecXrzd9hJGdJsBnwkfJauHxVqbqRmBqQUjhrbGJPgoWb imported_1397503463 false
+
+Successful run will return json that contains the raw hex::
+
+	{ 
+    "rawtransaction": {
+	     "hex": "0100000001e604......90b53ae00000000", 
+		 "complete": true
+		 }
+	}
+
+Once you have the completed successful raw hex send the transaction by copying and pasting that hex string (without its quotes) as an argument to bitcoind sendrawtransaction
+
+   bitcoind sendrawtransaction 0100000001e604......90b53ae00000000
+
+The output will be the transaction hash ID. Check http://blockchain.info to see the status of the transation. You can also find the transaction via blockchain.info's page for the issuing address.
+
+
 .. _msc_createtx:
 
 msc_createtx.py
@@ -11,7 +343,8 @@ msc_createtx.py
 
 Purpose:
 ^^^^^^^^
-Used to create, sign and/or send a Masterprotocol currency transaction
+Used to create, sign and/or send a Masterprotocol currency transaction.
+Located in mastercoin-tools/scripts
 
 Checks:
 ^^^^^^^

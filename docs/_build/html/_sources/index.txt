@@ -9,7 +9,7 @@ Welcome to the Mastercoin documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    mastercore/index
    msc-tools/index
