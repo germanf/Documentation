@@ -31,7 +31,7 @@ Requirements:
 ^^^^^^^^^^^^^
 
 * Python 2.7.6
-* Fully synced Bitcoind node (can be local or remote)
+* Fully synced :ref:`Bitcoind <bitcoind>` node (can be local or remote)
 * Private key of the issuing address in bitcoind
 
 Inputs:
@@ -147,7 +147,7 @@ Requirements:
 ^^^^^^^^^^^^^
 
 * Python 2.7.6
-* Fully synced Bitcoind node (can be local or remote)
+* Fully synced :ref:`Bitcoind <bitcoind>` node (can be local or remote)
 * Private key of the issuing address in bitcoind
 
 Inputs:
@@ -274,7 +274,7 @@ Requirements:
 ^^^^^^^^^^^^^
 
 * Python 2.7.6
-* Fully synced Bitcoind node (can be local or remote)
+* Fully synced :ref:`Bitcoind <bitcoind>` node (can be local or remote)
 * Private key of the issuing address in bitcoind
 
 Inputs:

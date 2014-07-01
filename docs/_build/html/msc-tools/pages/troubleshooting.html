@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Mastercoin .12 documentation" href="../../index.html" />
     <link rel="up" title="Mastercoin-Tools" href="../index.html" />
-    <link rel="next" title="Omniwallet" href="../../omniwallet/index.html" />
+    <link rel="next" title="Categories" href="categories.html" />
     <link rel="prev" title="Obelisk" href="obelisk.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../../omniwallet/index.html" title="Omniwallet"
+          <a href="categories.html" title="Categories"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="obelisk.html" title="Obelisk"
@@ -115,6 +115,28 @@ sx bci-fetch-last-height
 </ul>
 </div>
 </div>
+<div class="section" id="bitcoind">
+<span id="id3"></span><h2>Bitcoind<a class="headerlink" href="#bitcoind" title="Permalink to this headline">¶</a></h2>
+<p>Bitcoind is used by the Smart Property Scripts.</p>
+<ul class="simple">
+<li><a class="reference internal" href="tools.html#msc-tx50"><em>Asset Issuance (generateTX50_SP.py)</em></a></li>
+<li><a class="reference internal" href="tools.html#msc-tx51"><em>Crowdsale (generateTX51_SP.py)</em></a></li>
+<li><a class="reference internal" href="tools.html#msc-tx53"><em>Close Crowdsale (generateTX53_SP.py)</em></a></li>
+</ul>
+<p>It can either be run locally or on a remote machine.
+The scripts will first attempt to connect to a locally running instance of bitcoind, if that fails then they will look for and
+and try to connect to a remote instance. It will load connection information from</p>
+<div class="highlight-python"><div class="highlight"><pre>home/&lt;username&gt;/.bitcoin/bitcoin.conf
+</pre></div>
+</div>
+<p>bitcoin.conf is a 4 line file with the following values (these should be taken straigt from the configuration of your running bitcoind):</p>
+<ul class="simple">
+<li>rpcuser     - The username defined in your bitcoin.conf</li>
+<li>rpcpassword - The password defined in your bitcoin.conf</li>
+<li>rpcconnect  - The ip adress of the remote bitcoind machine</li>
+<li>rpcport     - (optional) The port its running on. (If not specified defaults to 8332)</li>
+</ul>
+</div>
 </div>
 
 
@@ -136,6 +158,7 @@ sx bci-fetch-last-height
 <li><a class="reference internal" href="#id2">Fix</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#bitcoind">Bitcoind</a></li>
 </ul>
 </li>
 </ul>
@@ -144,8 +167,8 @@ sx bci-fetch-last-height
   <p class="topless"><a href="obelisk.html"
                         title="previous chapter">Obelisk</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../../omniwallet/index.html"
-                        title="next chapter">Omniwallet</a></p>
+  <p class="topless"><a href="categories.html"
+                        title="next chapter">Categories</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../../_sources/msc-tools/pages/troubleshooting.txt"
@@ -175,7 +198,7 @@ sx bci-fetch-last-height
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../../omniwallet/index.html" title="Omniwallet"
+          <a href="categories.html" title="Categories"
              >next</a> |</li>
         <li class="right" >
           <a href="obelisk.html" title="Obelisk"

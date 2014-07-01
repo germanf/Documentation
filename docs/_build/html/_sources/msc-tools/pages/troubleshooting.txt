@@ -76,3 +76,29 @@ Fix
 
 
 
+.. _bitcoind:
+
+Bitcoind
+--------
+
+Bitcoind is used by the Smart Property Scripts.
+
+* :ref:`Asset Issuance (generateTX50_SP.py) <msc_tx50>` 
+* :ref:`Crowdsale (generateTX51_SP.py) <msc_tx51>`
+* :ref:`Close Crowdsale (generateTX53_SP.py) <msc_tx53>`
+
+It can either be run locally or on a remote machine.
+The scripts will first attempt to connect to a locally running instance of bitcoind, if that fails then they will look for and 
+and try to connect to a remote instance. It will load connection information from ::
+
+ home/<username>/.bitcoin/bitcoin.conf
+
+
+bitcoin.conf is a 4 line file with the following values (these should be taken straigt from the configuration of your running bitcoind):
+
+* rpcuser     - The username defined in your bitcoin.conf
+* rpcpassword - The password defined in your bitcoin.conf
+* rpcconnect  - The ip adress of the remote bitcoind machine
+* rpcport     - (optional) The port its running on. (If not specified defaults to 8332)
+
+
